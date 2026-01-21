@@ -10,16 +10,20 @@ public class Productor extends Thread {
 	public Productor(Fichero archivo) {
 		super();
 		this.archivo = archivo;
-		this.numProductor = numProductorGlobal;
-		numProductorGlobal++;
+		this.numProductor = getNumProductorGlobal();
+		setNumProductorGlobal(getNumProductorGlobal() + 1);
 	}
 
 	@Override
 	public void run() {
-		boolean loConsiguio=false;
-		while(!loConsiguio) {
-			 archivo.reescribirFichero();
+
+		archivo.reescribirFichero();
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	public static int getNumProductorGlobal() {

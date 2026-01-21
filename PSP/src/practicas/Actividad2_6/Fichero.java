@@ -15,35 +15,37 @@ public class Fichero {
 		super();
 		this.archivo = archivo;
 	}
-	
-	public synchronized void reescribirFichero() {
-		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(archivo));
-			String linea = String.valueOf(LocalDateTime.now());
-			pw.print(linea);
-			String prueba;
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void leerFichero() {
-		try {
-			BufferedReader bf = new BufferedReader(new FileReader(archivo));
-			String linea;
-			while((linea = bf.readLine())!=null) {
-				System.out.println(linea);
-				bf.close();
+
+	public void reescribirFichero() {
+		synchronized (archivo) {
+			try (PrintWriter pw = new PrintWriter(new FileWriter(archivo));) {
+
+				String linea = String.valueOf(LocalDateTime.now());
+				pw.print(linea);
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
+
+	}
+
+	public void leerFichero() {
+		synchronized (archivo) {
+			try (BufferedReader bf = new BufferedReader(new FileReader(archivo));) {
+				String linea;
+				while ((linea = bf.readLine()) != null) {
+					System.out.println(linea);
+				}
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 
 	public File getArchivo() {
@@ -53,5 +55,5 @@ public class Fichero {
 	public void setArchivo(File archivo) {
 		this.archivo = archivo;
 	}
-	
+
 }
