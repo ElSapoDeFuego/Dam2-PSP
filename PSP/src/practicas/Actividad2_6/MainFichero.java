@@ -7,21 +7,10 @@ public class MainFichero {
 		int cont = 0;
 		File archivo = new File("horas.txt");
 		Fichero fichero = new Fichero(archivo);
-		while (cont < 6) {
-			Productor pro1 = new Productor(fichero);
-			Consumidor cons1 = new Consumidor(fichero);
-			pro1.start();
-			cons1.start();
-			try {
-				pro1.join();
-				cons1.join();
+		Productor pro1 = new Productor(fichero);
+		Consumidor cons1 = new Consumidor(fichero);
+		pro1.start();
+		cons1.start();
 
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			cont++;
-
-		}
 	}
 }

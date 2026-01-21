@@ -14,12 +14,18 @@ public class Consumidor extends Thread {
 	
 	@Override
 	public void run() {
-		archivo.leerFichero();
-		try {
-		Thread.sleep(2000);	
-		} catch (Exception e) {
-			e.printStackTrace();
+		int cont = 0;
+		while(cont<5) {
+			archivo.leerFichero();
+			try {
+			System.out.println("Acabe de leer por "+(cont+1)+" vez");
+			cont++;
+			Thread.sleep(2000);	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+	
 	}
 
 	public static int getNumConsumidorGlobal() {

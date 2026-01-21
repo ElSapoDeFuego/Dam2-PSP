@@ -17,13 +17,16 @@ public class Productor extends Thread {
 	@Override
 	public void run() {
 
-		archivo.reescribirFichero();
-		try {
-			Thread.sleep(2000);
-		} catch (Exception e) {
-			e.printStackTrace();
+		int cont = 0;
+		while (cont < 5) {
+			archivo.reescribirFichero();
+			try {
+				cont++;
+				Thread.sleep(2000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
 
 	public static int getNumProductorGlobal() {
