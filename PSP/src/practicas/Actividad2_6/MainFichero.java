@@ -5,7 +5,7 @@ import java.io.File;
 public class MainFichero {
 	public static void main(String[] args) {
 		int cont = 0;
-		File archivo = new File("hola.txt");
+		File archivo = new File("horas.txt");
 		Fichero fichero = new Fichero(archivo);
 		while (cont < 6) {
 			Productor pro1 = new Productor(fichero);
