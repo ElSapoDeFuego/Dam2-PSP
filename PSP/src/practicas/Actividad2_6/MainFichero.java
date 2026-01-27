@@ -11,6 +11,5 @@ public class MainFichero {
 		Consumidor cons1 = new Consumidor(fichero);
 		pro1.start();
 		cons1.start();
-
 	}
 }
