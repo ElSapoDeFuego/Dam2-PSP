@@ -2,6 +2,8 @@ package ejstcp.Actividad3_2;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -10,22 +12,19 @@ public class Cliente1 {
 		Scanner sc = new Scanner(System.in);
 		String host = "localhost";
 		int puerto = 50000;
-		System.out.println("Programa Cliente INICIADO...");
+		System.out.println("Programa Cliente INICIADO..."
+				+ "\nescribe algo");
 		Socket cliente = new Socket(host, puerto);
 
 		// flujo salida
-		DataOutputStream flujoSalida = new DataOutputStream(cliente.getOutputStream());
-		String lineaRecibida;
-		lineaRecibida = sc.nextLine();
 
-		flujoSalida.writeUTF(lineaRecibida);
-
-		// flujo entrada
-		DataInputStream flujoEntrada = new DataInputStream(cliente.getInputStream());
+		DataOutputStream salida = new DataOutputStream(cliente.getOutputStream());
+		String respuesta = sc.nextLine();
+		salida.writeUTF(respuesta);
+		
 
 		sc.close();
-		flujoEntrada.close();
-		flujoSalida.close();
+		salida.close();
 		cliente.close();
 	}
 }

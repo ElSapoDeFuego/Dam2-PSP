@@ -23,7 +23,7 @@ public class Servidor {
 			
 		
 			// EL CLIENTE ME ENVIA UN MENSAJE
-			System.out.println("Recibiendo del CLIENTE 1: \n\t" + flujoEntrada1.readUTF());
+			System.out.println("Recibiendo del CLIENTE 1: \n" + flujoEntrada1.readUTF().toUpperCase());
 
 		
 		} catch (Exception e) {
